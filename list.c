@@ -76,3 +76,13 @@ Status insert_at(List_ptr list, int value, int position)
     p_walk = p_walk->next;
   }
 }
+
+void display(List_ptr list)
+{
+  Node_ptr p_walk = list->head;
+  while (p_walk != NULL)
+  {
+    printf("%d\n",p_walk->value);
+    p_walk = p_walk->next;
+  }
+}
