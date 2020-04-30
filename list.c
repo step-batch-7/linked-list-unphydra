@@ -47,13 +47,17 @@ Status add_to_start(List_ptr list, int value)
 
 Status insert_at(List_ptr list, int value, int position)
 {
-  if (position > list->count || position < 0)
+  if (position > list->count+1 || position < 0)
   {
     return Failure;
   }
   if (position ==1 || position ==0)
   {
     return add_to_start(list,value);
+  }
+  if (position == list->count+1)
+  {
+    return add_to_end(list,value);
   }
   
   Node_ptr new_node = create_node(value);
