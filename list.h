@@ -1,6 +1,8 @@
 #ifndef __LIST_H
 #define __LIST_H
 
+#include <stdio.h>
+#include <stdlib.h>
 typedef enum
 {
   Failure,
@@ -24,6 +26,7 @@ typedef struct
 
 typedef List *List_ptr;
 
+Node_ptr create_node(int value);
 List_ptr create(void);
 
 Status add_to_end(List_ptr, int value);
@@ -35,7 +38,7 @@ void display(List_ptr);
 
 Status remove_from_start(List_ptr);
 Status remove_from_end(List_ptr);
-Status remove(List_ptr, int position);
+Status remove_from_position(List_ptr, int position);
 
 Status remove_first_occurrence(List_ptr, int value);
 Status remove_all_occurrences(List_ptr, int value);
