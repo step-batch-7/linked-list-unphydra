@@ -201,3 +201,17 @@ Status remove_first_occurrence(List_ptr list, int value)
   }
   return Failure;
 }
+
+Status remove_all_occurrences(List_ptr list, int value)
+{
+  Status curr_status = Failure;
+  while (1)
+  {
+    Status return_status = remove_first_occurrence(list,value);
+    if (return_status == Failure)
+    {
+      return curr_status;
+    }
+    curr_status = curr_status || return_status;
+  }
+}
