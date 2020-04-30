@@ -81,11 +81,10 @@ Status add_unique(List_ptr list, int value)
 {
   Node_ptr p_walk = list->head;
   int count = 0;
-  Status curr_status = Failure;
   while (count<list->count)
   {
     if (p_walk->value==value) {
-      return curr_status;
+      return Failure;
     }
     count++;
     p_walk = p_walk->next;
