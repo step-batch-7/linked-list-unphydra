@@ -215,3 +215,25 @@ Status remove_all_occurrences(List_ptr list, int value)
     curr_status = curr_status || return_status;
   }
 }
+
+Status clear_list(List_ptr list)
+{
+  if (list->head==NULL)
+  {
+    return Failure;
+  }
+  
+  Node_ptr p_walk = list->head;
+  Node_ptr element_to_free = NULL;
+
+  while (p_walk!=NULL)
+  {
+    element_to_free = p_walk;
+    p_walk = p_walk->next;
+    free(element_to_free);
+  }
+  list->head = NULL;
+  list->last = NULL;
+  list->count = 0;
+  return Success;
+}
