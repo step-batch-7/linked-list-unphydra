@@ -181,3 +181,23 @@ Status remove_at(List_ptr list, int position)
   list->count--;
   return Success;
 }
+
+Status remove_first_occurrence(List_ptr list, int value)
+{
+  if (list->head==NULL)
+  {
+    return Failure;
+  }
+  Node_ptr p_walk = list->head;
+  int count = 1;
+  while (count<=list->count)
+  {
+    if (value == p_walk->value)
+    {
+      return remove_at(list,count);
+    }
+    count++;
+    p_walk= p_walk->next;
+  }
+  return Failure;
+}
