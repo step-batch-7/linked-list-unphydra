@@ -30,3 +30,17 @@ Status add_to_end(List_ptr list, int value)
   list->count++;
   return Success;
 }
+
+Status add_to_start(List_ptr list, int value)
+{
+  Node_ptr new_node = create_node(value);
+  if (list->head==NULL)
+  {
+    list->last = new_node;
+  }
+  Node_ptr temp = list->head;
+  list->head = new_node;
+  list->head->next = temp;
+  list->count++;
+  return Success;
+}
