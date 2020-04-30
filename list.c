@@ -8,7 +8,7 @@ Node_ptr create_node(int value)
   return new_node;
 }
 
-List_ptr create()
+List_ptr create_list()
 {
   List_ptr new_list =malloc(sizeof(List));
   new_list->head = NULL;
