@@ -108,6 +108,14 @@ Status remove_from_start(List_ptr list)
   {
     return Failure;
   }
+  if (list->count==1)
+  {
+    free(list->head);
+    list->head = NULL;
+    list->last = NULL;
+    list->count = 0;
+    return Success;
+  }
   Node_ptr temp = list->head->next;
   free(list->head);
   list->head = temp;
