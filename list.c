@@ -139,14 +139,14 @@ Status remove_from_end(List_ptr list)
   }
   
   Node_ptr p_walk = list->head;
-  int count = 2;
-  while (count<list->count)
+  Node_ptr element_to_remove = p_walk->next;
+  while (element_to_remove->next!=NULL)
   {
-    count++;
-    p_walk = p_walk->next;
+    p_walk = element_to_remove;
+    element_to_remove = element_to_remove->next;
   }
   p_walk->next = NULL;
-  free(list->last);
+  free(element_to_remove);
   list->last = p_walk;
   list->count--;
   return Success;
