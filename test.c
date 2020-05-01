@@ -237,6 +237,27 @@ void test_remove_first_occurrence(void)
   show_message("should remove the first occurrence of the given value from the in between position", s);
 }
 
+void test_remove_all_occurrences(void)
+{
+  printf("\ntest_remove_first_occurrences\n");
+  List_ptr actual = create_list();
+  Status s = add_to_end(actual,5);
+  s = s && add_to_end(actual,2);
+  s = s && add_to_end(actual,5);
+  s = s && add_to_end(actual,5);
+  s = s && remove_all_occurrences(actual,2);
+  int expected_1[] = {5,5,5};
+  int expected_1_length = 3;
+  s = s && compare_list_values(actual,expected_1,expected_1_length);
+  show_message("should remove the first occurrence of the given value from the first position", s);
+
+  s = remove_all_occurrences(actual,5);
+  int expected_2[] = {};
+  int expected_2_length = 0;
+  s = s && compare_list_values(actual,expected_2,expected_2_length);
+  show_message("should remove the first occurrence of the given value from the in between position", s);
+}
+
 int main(void)
 {
   test_add_to_end();
@@ -247,5 +268,6 @@ int main(void)
   test_remove_from_end();
   test_remove_at();
   test_remove_first_occurrence();
+  test_remove_all_occurrences();
   return 0;
 }
