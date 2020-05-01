@@ -110,11 +110,7 @@ Status remove_from_start(List_ptr list)
   }
   if (list->count==1)
   {
-    free(list->head);
-    list->head = NULL;
-    list->last = NULL;
-    list->count = 0;
-    return Success;
+    return clear_list(list);
   }
   Node_ptr temp = list->head->next;
   free(list->head);
@@ -131,11 +127,7 @@ Status remove_from_end(List_ptr list)
   }
   if (list->count==1)
   {
-    free(list->head);
-    list->head = NULL;
-    list->last = NULL;
-    list->count = 0;
-    return Success;
+    return clear_list(list);
   }
   
   Node_ptr p_walk = list->head;

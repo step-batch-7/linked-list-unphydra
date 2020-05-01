@@ -3,12 +3,16 @@
 typedef int * Array;
 typedef char * String;
 
+int pass = 0;
+int fail = 0;
+
 Status compare_list_values(List_ptr,Array,int);
 void show_message(String,Status);
 void show_length_failure(int, int);
 
 void show_message(String msg, Status s)
 {
+  s?pass++:fail++;
   printf("%s => %s\n",msg,s?"pass":"fails");
 }
 
@@ -278,7 +282,6 @@ void test_find_index(void)
   show_message("should give -1 if the value is not present in the list", s);
 }
 
-
 int main(void)
 {
   test_add_to_end();
@@ -291,5 +294,6 @@ int main(void)
   test_remove_first_occurrence();
   test_remove_all_occurrences();
   test_find_index();
+  printf("\ntestpasses=> %d, testfail=> %d\n", pass,fail);
   return 0;
 }
