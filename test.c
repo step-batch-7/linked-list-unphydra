@@ -116,10 +116,34 @@ void test_insert_at(void)
   show_message("should add a value at the given between position of the list", s);
 }
 
+void test_add_unique(void)
+{
+  printf("\ntest_add_unique\n");
+  List_ptr actual = create_list();
+  Status s = add_unique(actual,5);
+  int expected_1[] = {5};
+  int expected_1_length = 1;
+  s = s && compare_list_values(actual,expected_1,expected_1_length);
+  show_message("should add a value if the list head is null", s);
+
+  s = add_unique(actual,2);
+  int expected_2[] = {5,2};
+  int expected_2_length = 2;
+  s = s && compare_list_values(actual,expected_2,expected_2_length);
+  show_message("should add a unique value at the end of the list", s);
+
+  s = add_unique(actual,2);
+  int expected_3[] = {5,2};
+  int expected_3_length = 2;
+  s = (s==Failure) && compare_list_values(actual,expected_3,expected_3_length);
+  show_message("should not add the not unique value at the end of the list", s);
+}
+
 int main(void)
 {
   test_add_to_end();
   test_add_to_start();
   test_insert_at();
+  test_add_unique();
   return 0;
 }
