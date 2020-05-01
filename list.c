@@ -93,12 +93,18 @@ Status add_unique(List_ptr list, int value)
 }
 
 void display(List_ptr list)
-{
-  Node_ptr p_walk = list->head;
-  while (p_walk != NULL)
+{ 
+  if (list->head==NULL)
   {
-    printf("%d\n",p_walk->value);
-    p_walk = p_walk->next;
+    printf("\nthe list is empty\n");
+  } else {
+    printf("\n%s\n",list->count>1?"values of the list are":"value of the list is");
+    Node_ptr p_walk = list->head;
+    while (p_walk != NULL)
+    {
+      printf("%d\n",p_walk->value);
+      p_walk = p_walk->next;
+    }
   }
 }
 
@@ -236,22 +242,19 @@ void destroy_list(List_ptr list)
   free(list);
 }
 
-int find_index(List_ptr list,int value)
+Status find_index(List_ptr list,int value)
 {
-  if (list->head==NULL)
-  {
-    return -1;
-  }
-  
   Node_ptr p_walk = list->head;
   int count = 1;
   while (p_walk!=NULL)
   {
     if(p_walk->value == value){
-      return count;
+      printf("\n%d present is the list at a position %d\n",value,count);
+      return Success;
     }
     count++;
     p_walk = p_walk->next;
   }
-  return -1;
+  printf("\n%d is not present in the list\n", value);
+  return Success;
 }

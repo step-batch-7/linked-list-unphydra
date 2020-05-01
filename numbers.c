@@ -50,7 +50,7 @@ void perform_operation_on_list(List_ptr list,char option, int value, int positio
     s = clear_list(list);
     break;
   case 'k':
-    find_index(list,value);
+    s = find_index(list,value);
     break;
   case 'l':
     display(list);

@@ -46,6 +46,6 @@ Status remove_all_occurrences(List_ptr, int value);//i
 Status clear_list(List_ptr); //j
 
 void destroy_list(List_ptr); // 
-int find_index(List_ptr,int value);//k
+Status find_index(List_ptr,int value);//k
 
 #endif
