@@ -139,11 +139,31 @@ void test_add_unique(void)
   show_message("should not add the not unique value at the end of the list", s);
 }
 
+void test_remove_from_start(void)
+{
+  printf("\ntest_remove_from_start\n");
+  List_ptr actual = create_list();
+  Status s = remove_from_start(actual);
+  int expected_1[] = {};
+  int expected_1_length = 0;
+  s = (s==Failure) && compare_list_values(actual,expected_1,expected_1_length);
+  show_message("should not remove if the list is empty", s);
+
+  s = add_to_start(actual,2);
+  s = s && add_to_start(actual,2);
+  s = s && remove_from_start(actual);
+  int expected_2[] = {2};
+  int expected_2_length = 1;
+  s = s && compare_list_values(actual,expected_2,expected_2_length);
+  show_message("should remove a value from the start of the list", s);
+}
+
 int main(void)
 {
   test_add_to_end();
   test_add_to_start();
   test_insert_at();
   test_add_unique();
+  test_remove_from_start();
   return 0;
 }
