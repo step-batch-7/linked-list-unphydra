@@ -243,3 +243,23 @@ void destroy_list(List_ptr list)
   clear_list(list);
   free(list);
 }
+
+int find_index(List_ptr list,int value)
+{
+  if (list->head==NULL)
+  {
+    return -1;
+  }
+  
+  Node_ptr p_walk = list->head;
+  int count = 1;
+  while (p_walk!=NULL)
+  {
+    if(p_walk->value == value){
+      return count;
+    }
+    count++;
+    p_walk = p_walk->next;
+  }
+  return -1;
+}

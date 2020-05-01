@@ -258,6 +258,21 @@ void test_remove_all_occurrences(void)
   show_message("should remove the first occurrence of the given value from the in between position", s);
 }
 
+void test_find_index(void)
+{
+  printf("\ntest_find_index\n");
+  List_ptr actual = create_list();
+  Status s = add_to_end(actual,5);
+  s = s && add_to_end(actual,2);
+  s = s && add_to_end(actual,5);
+  s = s && add_to_end(actual,5);
+  int value = find_index(actual,5);
+  int expected = 1;
+  s = s && (value==expected);
+  show_message("should give the position of the value in the list", s);
+}
+
+
 int main(void)
 {
   test_add_to_end();
@@ -269,5 +284,6 @@ int main(void)
   test_remove_at();
   test_remove_first_occurrence();
   test_remove_all_occurrences();
+  test_find_index();
   return 0;
 }

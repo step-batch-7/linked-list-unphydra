@@ -47,4 +47,6 @@ Status clear_list(List_ptr); // Removes all elements in the list
 
 void destroy_list(List_ptr); // Frees the elements and the list structure from memory
 
+int find_index(List_ptr,int value);
+
 #endif
