@@ -271,15 +271,11 @@ void test_find_index(void)
   s = s && add_to_end(actual,5);
   s = s && add_to_end(actual,5);
 
-  int value = find_index(actual,5);
-  int expected = 1;
-  s = s && (value==expected);
-  show_message("should give the position of the value in the list", s);
+  s = s && find_index(actual,5);
+  show_message("should give success of the value in the list", s);
 
-  value = find_index(actual,3);
-  expected = -1;
-  s = s && (value==expected);
-  show_message("should give -1 if the value is not present in the list", s);
+  s = find_index(actual,3);
+  show_message("should give success if value is not present in the list", s);
 }
 
 int main(void)
