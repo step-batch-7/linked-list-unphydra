@@ -1,4 +1,4 @@
-#include "list.h"
+#include "../list.h"
 
 typedef int * Array;
 typedef char * String;
