@@ -197,43 +197,44 @@ void test_remove_at(void)
 {
   printf("\ntest_remove_at\n");
   List_ptr actual = create_list();
-  Status s = remove_at(actual,1);
+  Status s = remove_at(actual,0);
   int expected_1[] = {};
   int expected_1_length = 0;
   s = (s==Failure) && compare_list_values(actual,expected_1,expected_1_length);
   show_message("should not remove if the list is empty", s);
 
   s = add_to_end(actual,2);
-  s =s && add_to_end(actual,2);
-  s =s && remove_at(actual,1);
-  int expected_2[] = {2};
+  s =s && add_to_end(actual,3);
+  s =s && remove_at(actual,0);
+  int expected_2[] = {3};
   int expected_2_length = 1;
   s = s && compare_list_values(actual,expected_2,expected_2_length);
   show_message("should remove a value at the first position of the list", s);
 
-  s = remove_at(actual,0);
-  int expected_3[] = {2};
+  s =add_to_end(actual,4);
+  s = s && remove_at(actual,0);
+  int expected_3[] = {4};
   int expected_3_length = 1;
-  s = (s==Failure) && compare_list_values(actual,expected_3,expected_3_length);
+  s = s && compare_list_values(actual,expected_3,expected_3_length);
   show_message("should not remove a value at the zero position of the list", s);
 
-  s = remove_at(actual,2);
-  int expected_4[] = {2};
+  s = remove_at(actual,1);
+  int expected_4[] = {4};
   int expected_4_length = 1;
   s = (s==Failure) && compare_list_values(actual,expected_4,expected_4_length);
   show_message("should not remove a value at the position after the end of the list", s);
 
   s = add_to_end(actual,5);
-  s =s && add_to_end(actual,4);
-  s =s && remove_at(actual,2);
-  int expected_5[] = {2,4};
+  s =s && add_to_end(actual,3);
+  s =s && remove_at(actual,1);
+  int expected_5[] = {4,3};
   int expected_5_length = 2;
   s = s && compare_list_values(actual,expected_5,expected_5_length);
   show_message("should remove a value at the given between position of the list", s);
 
   s = add_to_end(actual,5);
-  s =s && remove_at(actual,3);
-  int expected_6[] = {2,4};
+  s =s && remove_at(actual,1);
+  int expected_6[] = {4,5};
   int expected_6_length = 2;
   s = s && compare_list_values(actual,expected_6,expected_6_length);
   show_message("should remove a value at the given between position of the list", s);
@@ -262,7 +263,7 @@ void test_remove_first_occurrence(void)
 
 void test_remove_all_occurrences(void)
 {
-  printf("\ntest_remove_first_occurrences\n");
+  printf("\ntest_remove_all_occurrences\n");
   List_ptr actual = create_list();
   Status s = add_to_end(actual,5);
   s = s && add_to_end(actual,2);

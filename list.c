@@ -151,22 +151,22 @@ Status remove_from_end(List_ptr list)
 
 Status remove_at(List_ptr list, int position)
 {
-  if (list->head==NULL || position > list->count || position < 1)
+  if (list->head==NULL || position >= list->count || position < 0)
   {
     return Failure;
   }
-  if (position == 1)
+  if (position == 0)
   {
     return remove_from_start(list);
   }
-  if (position == list->count)
+  if (position == list->count-1)
   {
     return remove_from_end(list);
   }
   
   Node_ptr p_walk = list->head;
   Node_ptr elment_to_delete = p_walk->next;
-  int count = 2;
+  int count = 1;
   while (count<position)
   {
     count++;
@@ -186,8 +186,8 @@ Status remove_first_occurrence(List_ptr list, int value)
     return Failure;
   }
   Node_ptr p_walk = list->head;
-  int count = 1;
-  while (count<=list->count)
+  int count = 0;
+  while (count < list->count)
   {
     if (value == p_walk->value)
     {
