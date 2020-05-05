@@ -90,34 +90,46 @@ void test_insert_at(void)
   printf("\ntest_insert_at\n");
   List_ptr actual = create_list();
   Status s = insert_at(actual,5,1);
+  int expected_0[] = {};
+  int expected_0_length = 0;
+  s = (s==Failure) && compare_list_values(actual,expected_0,expected_0_length);
+  show_message("should not add a value if the list head is null and position is one", s);
+
+  s = insert_at(actual,5,0);
   int expected_1[] = {5};
   int expected_1_length = 1;
   s = s && compare_list_values(actual,expected_1,expected_1_length);
   show_message("should add a value if the list head is null", s);
 
   s = insert_at(actual,2,1);
-  int expected_2[] = {2,5};
+  int expected_2[] = {5,2};
   int expected_2_length = 2;
   s = s && compare_list_values(actual,expected_2,expected_2_length);
   show_message("should add a value at the first position of the list", s);
 
   s = insert_at(actual,1,0);
-  int expected_3[] = {1,2,5};
+  int expected_3[] = {1,5,2};
   int expected_3_length = 3;
   s = s && compare_list_values(actual,expected_3,expected_3_length);
   show_message("should add a value at the zero position of the list", s);
 
-  s = insert_at(actual,4,4);
-  int expected_4[] = {1,2,5,4};
+  s = insert_at(actual,4,3);
+  int expected_4[] = {1,5,2,4};
   int expected_4_length = 4;
   s = s && compare_list_values(actual,expected_4,expected_4_length);
-  show_message("should add a value at the position after the end of the list", s);
+  show_message("should add a value at the last position of the list", s);
 
-  s = insert_at(actual,3,3);
-  int expected_5[] = {1,2,3,5,4};
+  s = insert_at(actual,3,2);
+  int expected_5[] = {1,5,3,2,4};
   int expected_5_length = 5;
   s = s && compare_list_values(actual,expected_5,expected_5_length);
   show_message("should add a value at the given between position of the list", s);
+
+  s = insert_at(actual,9,4);
+  int expected_6[] = {1,5,3,2,9,4};
+  int expected_6_length = 6;
+  s = s && compare_list_values(actual,expected_6,expected_6_length);
+  show_message("should add a value at the end of the list", s);
 }
 
 void test_add_unique(void)
@@ -178,7 +190,7 @@ void test_remove_from_end(void)
   int expected_2[] = {2};
   int expected_2_length = 1;
   s = s && compare_list_values(actual,expected_2,expected_2_length);
-  show_message("should remove a value from the start of the list", s);
+  show_message("should remove a value from the end of the list", s);
 }
 
 void test_remove_at(void)
@@ -217,6 +229,13 @@ void test_remove_at(void)
   int expected_5[] = {2,4};
   int expected_5_length = 2;
   s = s && compare_list_values(actual,expected_5,expected_5_length);
+  show_message("should remove a value at the given between position of the list", s);
+
+  s = add_to_end(actual,5);
+  s =s && remove_at(actual,3);
+  int expected_6[] = {2,4};
+  int expected_6_length = 2;
+  s = s && compare_list_values(actual,expected_6,expected_6_length);
   show_message("should remove a value at the given between position of the list", s);
 }
 
